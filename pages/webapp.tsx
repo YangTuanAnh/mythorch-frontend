@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-function Notes() {
+function WebApp() {
     return (
        <Layout>
         
@@ -7,4 +7,4 @@ function Notes() {
     )
 }
 
-export default Notes;
+export default WebApp;
