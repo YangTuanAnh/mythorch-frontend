@@ -21,7 +21,8 @@ module.exports = {
         s2condNOSTATUS: '#EEEEEE',
         s2condREVIEWING: '#9DEBFD',
         s2condINPROGRESS: '#FDEA9D',
-        s2condCOMPLETED: '#9DFDC3'
+        s2condCOMPLETED: '#9DFDC3',
+        thirdLOGIN: '#E6F2F7'
       },
     }
 
@@ -30,6 +31,9 @@ module.exports = {
   safelist: [
     {
       pattern: /(bg|text|border)-s2cond(NOSTATUS|NOSTATUSBG|INPROGRESS|INPROGRESSBG|REVIEWING|REVIEWINGBG|COMPLETED|COMPLETEDBG)/
+    },
+    {
+      pattern: /(bg|text|border)-third(LOGIN)/
     }
   ]
 }

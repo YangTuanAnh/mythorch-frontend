@@ -1,6 +1,10 @@
+import { CurrentPageContext } from "@/components/context/CurrentPageContext";
+import { LoginContext } from "@/components/context/LoginContext";
 import Layout from "@/components/Layout";
 import NoteBox from "@/components/NoteBox";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import { useContext, useEffect } from "react";
 
 interface NotesPageProps {
     boxContents: string[][],
@@ -17,6 +21,10 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 }
 
 const Notes: React.FC<NotesPageProps> = (props) => {
+    const { hasLogin } = useContext(LoginContext);
+    const { setPage } = useContext(CurrentPageContext);
+    
+    if(!hasLogin) return null;
     return (
         <Layout>
             <div className="grid 2xl:grid-cols-4 sm:grid-cols-2 2xl:gap-4 sm:gap-2 w-full justify-items-center">

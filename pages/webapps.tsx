@@ -1,5 +1,5 @@
 import Layout from "@/components/Layout";
-function WebApp() {
+function WebApps() {
     return (
        <Layout>
         
@@ -7,4 +7,4 @@ function WebApp() {
     )
 }
 
-export default WebApp;
+export default WebApps;
