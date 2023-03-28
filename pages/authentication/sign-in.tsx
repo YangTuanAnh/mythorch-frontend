@@ -1,11 +1,11 @@
+import { LoginContext } from "@/components/context/LoginContext";
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
 import { useState } from "react";
 import { useStore } from "@/stores";
 import { useRouter } from 'next/router'
 
-const SignIn = () =>
-{
+const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(String(null));
@@ -36,16 +36,16 @@ const SignIn = () =>
                     <label className="font-semibold">Email Address</label>
                     <input type="email" name="email" placeholder="Email Address" 
                         onChange={(e) => setEmail(e.target.value)}
-                        className="w-full mb-4 px-4 py-2 bg-tertiary rounded-full" />
-                    <label className="font-semibold">Password</label>
-                    <input type="password" name="password" placeholder="Password" 
+                        className="w-full my-4 px-4 py-2 bg-tertiary rounded-full text-black" />
+                    <label className="font-semibold text-black my-1">Password</label>
+                    <input type="password" name="password" placeholder="Password"
                         onChange={(e) => setPassword(e.target.value)}
-                        className="w-full mb-4 px-4 py-2 bg-tertiary rounded-full" />
+                        className="w-full my-4 px-4 py-2 bg-tertiary rounded-full text-black" />
                     <Link href="#" className="text-secondary font-bold">I forgot my password</Link>
-                    <button 
-                        onClick={submitHandler} 
-                        className="bg-secondary rounded-full w-full mb-4 p-2 text-neutral-200 font-bold hover:scale-105 transition">Login</button>
-                    <p className="text-secondary">Don't have an account?&nbsp;
+                    <button
+                        onClick={submitHandler}
+                        className="bg-secondary rounded-full w-full my-4 p-2 text-neutral-200 font-bold hover:scale-x-105 transition">Login</button>
+                    <p className="text-secondary mt-5">Don't have an account?&nbsp;
                         <Link href="/authentication/sign-up" className="hover:underline">Register</Link>.
                     </p>
                 </div>
