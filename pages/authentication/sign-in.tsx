@@ -1,16 +1,29 @@
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
 import { useState } from "react";
+import { useStore } from "@/stores";
+import { useRouter } from 'next/router'
 
 const SignIn = () =>
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(String(null));
-    const submitHandler = () => {
+    const { user } = useStore();
+    const router = useRouter()
+    console.log(user.currentUser)
+    const submitHandler = async () => {
         if (email==="" || password==="") {
             setError("Please enter email and password");
             return;
+        }
+
+        try {
+            await user.login(email, password);
+            //alert(user.currentUser.uid)
+            router.push("/profile")
+        } catch (err) {
+            setError('Incorrect email or password')
         }
     }
     return (
@@ -18,8 +31,8 @@ const SignIn = () =>
             <Logo />
             <div className="h-full w-full flex items-center justify-center">
                 <div className="shrink md:w-5/12">
-                {error!==String(null) && <p className='text-red-600'>{error}</p>}
                     <h2 className="text-4xl font-bold text-neutral-600 text-center mb-4">Log in to MyThorch</h2>
+                    {error!==String(null) && <p className='text-red-600'>{error}</p>}
                     <label className="font-semibold">Email Address</label>
                     <input type="email" name="email" placeholder="Email Address" 
                         onChange={(e) => setEmail(e.target.value)}

@@ -1,7 +1,9 @@
 import { useContext, createContext, ReactNode } from 'react';
 import { makeAutoObservable } from 'mobx';
+import UserStore from './user';
 
 export class RootStore {
+    user = new UserStore(this);
 }
 
 export const store = new RootStore();

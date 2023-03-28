@@ -1,25 +1,29 @@
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
 import { useState } from "react";
+import { useStore } from "@/stores";
 
 const SignUp = () =>
 {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(String(null));
+    const { user } = useStore();
     const submitHandler = () => {
         if (email==="" || password==="") {
             setError("Please enter email and password");
             return;
         }
+        user.signup(email, password);
+        alert("User created");
     }
     return (
         <div className="h-screen bg-primary p-8">
             <Logo />
             <div className="h-full w-full flex items-center justify-center">
                 <div className="shrink md:w-5/12">
-                    {error!==String(null) && <p className='text-red-600'>{error}</p>}
                     <h2 className="text-4xl font-bold text-neutral-600 text-center mb-4">Get started for free</h2>
+                    {error!==String(null) && <p className='text-red-600'>{error}</p>}
                     <label className="font-semibold">Email Address</label>
                     <input type="email" name="email" placeholder="Email Address" 
                         onChange={(e) => setEmail(e.target.value)}
