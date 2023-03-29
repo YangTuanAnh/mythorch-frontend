@@ -2093,6 +2093,18 @@
   "resolved" "https://registry.npmjs.org/@types/json5/-/json5-0.0.29.tgz"
   "version" "0.0.29"
 
+"@types/lodash-es@^4.17.7":
+  "integrity" "sha512-z0ptr6UI10VlU6l5MYhGwS4mC8DZyYer2mCoyysZtSF7p26zOX8UpbrV0YpNYLGS8K4PUFIyEr62IMFFjveSiQ=="
+  "resolved" "https://registry.npmjs.org/@types/lodash-es/-/lodash-es-4.17.7.tgz"
+  "version" "4.17.7"
+  dependencies:
+    "@types/lodash" "*"
+
+"@types/lodash@*":
+  "integrity" "sha512-km+Vyn3BYm5ytMO13k9KTp27O75rbQ0NFw+U//g+PX7VZyjCioXaRFisqSIJRECljcTv73G3i6BpglNGHgUQ5A=="
+  "resolved" "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.192.tgz"
+  "version" "4.14.192"
+
 "@types/long@^4.0.1":
   "integrity" "sha512-MqTGEo5bj5t157U6fA/BiDynNkn0YknVdh48CMPkTSpFTVmvao5UQmm7uEF6xBEo7qIMAlY/JSleYaE6VOdpaA=="
   "resolved" "https://registry.npmjs.org/@types/long/-/long-4.0.2.tgz"
@@ -3033,7 +3045,7 @@
   "resolved" "https://registry.npmjs.org/damerau-levenshtein/-/damerau-levenshtein-1.0.8.tgz"
   "version" "1.0.8"
 
-"dayjs@^1.8.15":
+"dayjs@^1.11.7", "dayjs@^1.8.15":
   "integrity" "sha512-+Yw9U6YO5TQohxLcIkrXBeY73WP3ejHWVvx8XCk3gxvQDCTEmS48ZrSZCKciI7Bhl/uCMyxYtE9UqRILmFphkQ=="
   "resolved" "https://registry.npmjs.org/dayjs/-/dayjs-1.11.7.tgz"
   "version" "1.11.7"
@@ -4898,7 +4910,7 @@
   dependencies:
     "p-locate" "^5.0.0"
 
-"lodash-es@^4.17.11":
+"lodash-es@^4.17.11", "lodash-es@^4.17.21":
   "integrity" "sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw=="
   "resolved" "https://registry.npmjs.org/lodash-es/-/lodash-es-4.17.21.tgz"
   "version" "4.17.21"

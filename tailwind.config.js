@@ -36,6 +36,18 @@ module.exports = {
     },
     {
       pattern: /(bg|text|border)-third(LOGIN|WELCOME)/
+    },
+    {
+      pattern: /(mt|mb|mr|ml|my|mx|px|py|pt|pb|pl|pr)-[0-9]+/
+    },
+    {
+      pattern: /flex-.*/
+    },
+    {
+      pattern: /(bottom|right|top|left)-[0-9]+/
+    },
+    {
+      pattern: /(w|h)-[0-9]+/
     }
   ]
 }

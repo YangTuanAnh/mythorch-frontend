@@ -7,13 +7,13 @@ interface NoteBoxProps {
 const NoteBox: React.FC<NoteBoxProps> = (props) => {
 
     return (
-        <div className={`grid grid-flow-row auto-rows-max overflow-y-auto justify-center ${props.bgcolor} mx-5 my-8 rounded-3xl w-72 max-h-screen hover:-translate-y-3`}>
-            <div className={`border-solid ${props.color} flex flex-col self-center my-2 py-2 rounded-3xl h-12 w-64 text-black sticky top-2`}>
+        <div className={`grid grid-flow-row auto-rows-max overflow-y-auto justify-center ${props.bgcolor} mx-5 my-8 rounded-3xl xl:w-72 sm:min-w-fit max-h-full hover:-translate-y-3`}>
+            <div className={`border-solid ${props.color} flex flex-col self-center my-2 py-2 rounded-3xl h-12 w-64 text-black sticky top-2 sm:mx-1`}>
                 <div className="flex flex-row justify-center text-black font-bold text-xl">{props.title}</div>
             </div>
             <span className="h-0.5 w-full bg-[#E8F0F2] lg:w-full rounded-lg"></span>
             {props.contents.map((content, index) => (
-                <div className={`${props.color} flex flex-row my-2 py-2 rounded-3xl h-12 w-64 place-content-between items-center hover:scale-x-105`}>
+                <div className={`${props.color} flex flex-row my-2 py-2 rounded-3xl h-12 w-64 place-content-between items-center hover:xl:scale-x-105 hover:sm:scale-y-105 sm:mx-1`}>
                     <div className="flex flex-row justify-center text-black text-base text-black mx-2 ml-3">{content}</div>
                     <div className='flex flex-row justify-items-center mx-2'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="black" className="w-4 h-4 mx-0.5 hover:stroke-2 hover:-translate-y-1">
