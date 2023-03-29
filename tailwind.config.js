@@ -24,7 +24,9 @@ module.exports = {
         s2condINPROGRESS: '#FDEA9D',
         s2condCOMPLETED: '#9DFDC3',
         thirdLOGIN: '#E6F2F7',
-        thirdWELCOME: '#66C4E8'
+        thirdWELCOME: '#66C4E8',
+        fourthBLUE:'#007EAE',
+        fourthBLUEBG: '#CCEBF7'
       },
     }
 
@@ -36,6 +38,9 @@ module.exports = {
     },
     {
       pattern: /(bg|text|border)-third(LOGIN|WELCOME)/
+    },,
+    {
+      pattern: /(bg|text|border)-fourth(BLUE|BLUEBG)/
     },
     {
       pattern: /(mt|mb|mr|ml|my|mx|px|py|pt|pb|pl|pr)-[0-9]+/

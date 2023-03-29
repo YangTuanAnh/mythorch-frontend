@@ -23,14 +23,14 @@ const SideNavButton: React.FC<SideNavButtonProps> = (props) => {
 
     if (page === props.name)
         return (
-            <div className='rounded-xl flex flex-row justify-center pt-1.5 w-full h-10 border-[#99D8F0] bg-s2condINPROGRESS mx-1 my-1'>
-                <Link href={props.route}>
+            <div className='flex flex-row justify-center pt-1 mt-1 w-full xl:h-12 sm:h-8 items-center  border border-solid border-l-fourthBLUE border-l-4 bg-s2condINPROGRESS justify-center'>
+                <Link href={props.route} className='animate-bounce'>
                     {props.icon}
                 </Link>
             </div>
         )
     return (
-        <div className='rounded-xl flex flex-row justify-center pt-1.5 w-full h-10 border-[#99D8F0] hover:bg-[#99D8F0]  mx-1 my-1' onClick={() => setPage(props.name)}>
+        <div className='flex flex-row justify-center pt-1 mt-1 w-full xl:h-12 sm:h-8 items-center border-[#99D8F0]  hover:bg-[#99D8F0]' onClick={() => setPage(props.name)}>
             <Link href={props.route}>
                 {props.icon}
             </Link>
