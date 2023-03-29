@@ -1,7 +1,7 @@
 import { LoginContext } from "@/components/context/LoginContext";
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useStore } from "@/stores";
 import { useRouter } from 'next/router'
 
@@ -10,7 +10,9 @@ const SignIn = () => {
     const [password, setPassword] = useState("");
     const [error, setError] = useState(String(null));
     const { user } = useStore();
-    const router = useRouter()
+    const router = useRouter();
+    const { hasLogin, setLogin } = useContext(LoginContext);
+
     console.log(user.currentUser)
     const submitHandler = async () => {
         if (email==="" || password==="") {
@@ -21,6 +23,7 @@ const SignIn = () => {
         try {
             await user.login(email, password);
             //alert(user.currentUser.uid)
+            setLogin(true);
             router.push("/profile")
         } catch (err) {
             setError('Incorrect email or password')

@@ -10,7 +10,7 @@ import { CurrentPageContext } from '@/components/context/CurrentPageContext';
 export default function App({ Component, pageProps }: AppProps) {
   const [login, setLogin] = useState(false);
   const [currentPage, setCurrentPage] = useState('profile');
-
+  
 
   return <>
     <DefaultSeo {...SEO} />
