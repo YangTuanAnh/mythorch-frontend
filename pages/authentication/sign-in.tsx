@@ -1,4 +1,5 @@
 import { LoginContext } from "@/components/context/LoginContext";
+import { useAuth } from "@/components/context/AuthContext";
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
 import { useContext, useState } from "react";
@@ -9,11 +10,10 @@ const SignIn = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(String(null));
-    const { user } = useStore();
+    const { login } = useAuth();
     const router = useRouter();
     const { hasLogin, setLogin } = useContext(LoginContext);
 
-    console.log(user.currentUser)
     const submitHandler = async () => {
         if (email==="" || password==="") {
             setError("Please enter email and password");
@@ -21,10 +21,10 @@ const SignIn = () => {
         }
 
         try {
-            await user.login(email, password);
+            await login(email, password);
             //alert(user.currentUser.uid)
             setLogin(true);
-            router.push("/profile")
+            router.push("/webapp")
         } catch (err) {
             setError('Incorrect email or password')
         }

@@ -1,8 +1,9 @@
 import { LoginContext } from "@/components/context/LoginContext";
+import { useAuth } from "@/components/context/AuthContext";
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { useStore } from "@/stores";
 
@@ -11,13 +12,13 @@ const SignUp = () =>
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState(String(null));
-    const { user } = useStore();
+    const { signup } = useAuth()
     const submitHandler = () => {
         if (email === "" || password === "") {
             setError("Please enter email and password");
             return;
         }
-        user.signup(email, password);
+        signup(email, password);
         alert("User created");
     }
     return (
