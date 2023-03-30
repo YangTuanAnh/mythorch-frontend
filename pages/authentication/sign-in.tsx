@@ -3,7 +3,6 @@ import { useAuth } from "@/components/context/AuthContext";
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
 import { useContext, useState } from "react";
-import { useStore } from "@/stores";
 import { useRouter } from 'next/router'
 
 const SignIn = () => {
