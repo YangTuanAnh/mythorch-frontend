@@ -9,7 +9,7 @@ import { useRouter } from "next/router";
 import IconsBar from "./IconsBar";
 import { OpenLookUpContext } from "../context/OpenLookup";
 import WorkSection from "./WorkSection";
-import { GetServerSideProps } from "next";
+import { Transition } from "@headlessui/react";
 
 
 interface SideNavProps {
@@ -48,10 +48,19 @@ const SideNav: React.FC<SideNavProps> = (props) => {
                     </Link>
                 </div>
             </div>
-            {isOpen && <div className='flex flex-col xl:w-64 sm:w-32 -ml-1  h-full border-solid border-2  border-t-[#99D8F0] border-r-[#99D8F0]  border-b-[#99D8F0]'>
-                <IconsBar />
-                <WorkSection folders={[{ name: "Computer Hardware", books: ['Book 1', 'Book 2'] }]} />
-            </div>}
+            <Transition show={isOpen} enter="transition ease-in-out duration-300 transform"
+                enterFrom="-translate-x-full opacity-0"
+                enterTo="translate-x-0 opacity-100"
+                leave="transition ease-in-out duration-300 transform opacity-0"
+                leaveFrom="translate-x-0 opacity-100"
+                leaveTo="-translate-x-full">
+                <div className='flex flex-col xl:w-64 sm:w-32 ml-0 h-full border-solid border-2  border-t-[#99D8F0] border-r-[#99D8F0]  border-b-[#99D8F0]'>
+                    <IconsBar />
+                    <WorkSection folders={[{ name: "Computer Hardware", books: ['Book 1', 'Book 2'] }]} />
+                </div>
+            </Transition>
+
+
         </div>
     )
 }

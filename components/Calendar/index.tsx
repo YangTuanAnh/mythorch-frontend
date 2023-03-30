@@ -21,7 +21,7 @@ const Calendar: React.FC<CalendarProps> = (props) => {
     const dayObjOfLast = dayjs(`${thisYear}-${thisMonth + 1}-${daysInMonth}`);
     const weekDayOfLast = dayObjOfLast.day();
     return (
-        <div className="flex flex-col items-center w-full h-full hover:drop-shadow-xl bg-teal-800 rounded-3xl xl:p-2 xl:ml-0 mb-0 sm:p-2">
+        <div className="flex flex-col items-center w-full h-full hover:drop-shadow-xl bg-teal-800 rounded-3xl xl:p-2 xl:ml-0 xl:mb-0 sm:mb-0 sm:p-2">
             <div className="text-white font-bold sm:text-lg xl:text-xl self-start sm:ml-2 sm:mb-2 sm:mt-1 justify-center">Calendar</div>
             <div className='grid h-full w-full xl:m-1 rounded-3xl bg-white'>
                 <div className='flex flex-row mx-1 h-1/5 my-1'>
