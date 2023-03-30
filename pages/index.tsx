@@ -6,7 +6,7 @@ import Logo from "@/components/Hero/Logo";
 const Home = () =>
 {
     return (
-        <div className="h-screen bg-primary p-8">
+        <div className="h-screen bg-primary p-8 text-black">
             <Logo />
             <div className="h-full w-full flex flex-col-reverse md:flex-row gap-8 items-center">
                 <div className="flex-1">

@@ -21,7 +21,7 @@ const SignUp = () =>
         alert("User created");
     }
     return (
-        <div className="h-screen bg-primary p-8">
+        <div className="h-screen bg-primary p-8 text-black">
             <Logo />
             <div className="h-full w-full flex items-center justify-center">
                 <div className="shrink md:w-5/12">

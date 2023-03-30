@@ -26,7 +26,8 @@ module.exports = {
         thirdLOGIN: '#E6F2F7',
         thirdWELCOME: '#66C4E8',
         fourthBLUE:'#007EAE',
-        fourthBLUEBG: '#CCEBF7'
+        fourthBLUEBG: '#CCEBF7',
+        fourthBLUEBUTTON: '#009DD9'
       },
     }
 
@@ -40,7 +41,7 @@ module.exports = {
       pattern: /(bg|text|border)-third(LOGIN|WELCOME)/
     },,
     {
-      pattern: /(bg|text|border)-fourth(BLUE|BLUEBG)/
+      pattern: /(bg|text|border)-fourth(BLUE|BLUEBG|BLUEBUTTON)/
     },
     {
       pattern: /(mt|mb|mr|ml|my|mx|px|py|pt|pb|pl|pr)-[0-9]+/
