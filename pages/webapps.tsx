@@ -3,7 +3,36 @@ import Prompts from "@/components/Prompts";
 import { ChatBoxContext } from "@/components/context/ChatBoxContext";
 import { useContext } from "react";
 import { Transition } from "@headlessui/react";
-function WebApps() {
+import { GetServerSideProps } from "next";
+import Documents from "@/components/Documents";
+import TransitionBar from "@/components/TransitionBar";
+import ChatBox from "@/components/ChatBox";
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+    return {
+        props: {
+            files: {
+                name: 'Introduction to MobX',
+                payload: [[`MobX is an open source state management tool. When creating a web application, developers often seek an effective way of managing state within their applications. One solution is to use a unidirectional data flow pattern named Flux, introduced by the React team, and later implemented in a package called React-Redux, which made the use of the Flux pattern even easier`,
+                    `MobX, a simple, scalable, and standalone state management library, follows functional reactive programming (FRP) implementation and prevents inconsistent state by ensuring that all derivations are performed automatically. According to the MobX getting started page, “MobX makes state management simple again by addressing the root issue: it makes it impossible to produce an inconsistent state”`,
+                    `MobX is standalone and does not depend on any frontend library or framework to work. There are implementations of the MobX in popular front-end frameworks like React, Vue, and Angular`],
+                [`In this tutorial, we will discuss how to use MobX with React, but first, we will begin by getting to understand MobX a little better`,
+                    `In addition to being a library, MobX also introduces a few concepts: state, actions, and derivations (including reactions and computed values)`,
+                    `Application state refers to the entire model of an application, and can contain different data types including array, numbers, and objects. In MobX, actions are methods that manipulate and update the state. These methods can be bound to a JavaScript event handler to ensure a UI event triggers them`,
+                    `Anything (not just a value) that is derived from the application state without further interaction is referred to as a derivation. Derivations will listen to any particular state and then perform some computation to produce a distinct value from that state. A derivation can return any data type, including objects. In MobX, the two types of derivations are reactions and computed values`]]
+            }
+        }
+    }
+}
+
+interface WebAppsProps {
+    files: {
+        name: string,
+        payload: string[][]
+    }
+}
+
+const WebApps: React.FC<WebAppsProps> = (props) => {
     const { isOpen, toggle } = useContext(ChatBoxContext);
     return (
         <Layout>
@@ -25,25 +54,15 @@ function WebApps() {
                 </div>
             </div> */}
             {/* <Prompts bookName="Computer Hardware"/> */}
-            <div className="flex flex-row w-full py-2 h-full justify-center relative">
-                <div className="flex flex-col xl:w-2/3 xl:h-full sm:w-11/12 sm:h-full sm:ml-1 border border-solid border-2 xl:rounded-3xl sm:rounded-2xl border-black self-center justify-center">
-
-                </div>
-                <div className='rounded-xl hover:bg-fourthBLUEBG self-center items-end absolute top-2 right-1' onClick={() => toggle(!isOpen)}>
-                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="grey" className="w-10 h-10">
+            <div className="flex flex-row w-full py-2 h-full justify-center relative overflow-y-hidden">
+                <Documents files={props.files.payload} name={props.files.name} />
+                <div className='rounded-xl self-center items-end absolute top-2 right-1 sm:hidden md:flex' onClick={() => toggle(!isOpen)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="grey" className={`w-10 h-10 hover:fill-s2condNOSTATUSBG ${isOpen && 'fill-s2condNOSTATUSBG'}`}>
                         <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
                     </svg>
                 </div>
-                <Transition show={isOpen} enter="transition ease-in-out duration-300 transform"
-                    enterFrom="translate-x-full opacity-0"
-                    enterTo="translate-x-100 opacity-100"
-                    leave="transition ease-in-out duration-300 transform opacity-0"
-                    leaveFrom="translate-x-100 opacity-100"
-                    leaveTo="translate-x-full" className="xl:w-1/6 xl:mx-2 h-full sm:w-1/3 sm:mx-1">
-                    <div className="border border-solid border-2 border-black xl:rounded-3xl sm:rounded-2xl h-full xl:w-full bg-fourthBLUEBG">
-
-                    </div>
-                </Transition>
+                {/* <TransitionBar controlled={isOpen} /> */}
+                <ChatBox controlled={isOpen}/>
             </div>
         </Layout>
     )
