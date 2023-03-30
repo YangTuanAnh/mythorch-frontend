@@ -18,11 +18,19 @@ const ChatBox: React.FC<ChatBoxProps> = (props) => {
             leaveFrom="translate-x-100  opacity-100"
             leaveTo="translate-x-0 translate-y-full" className="xl:w-1/6 xl:mx-2 h-full sm:w-1/3 sm:mx-1 sm:hidden md:flex">
             <div className="flex flex-col border border-solid border-2 border-black xl:rounded-3xl items-center content-bottom sm:rounded-2xl h-full xl:w-full bg-fourthBLUEBG relative">
-                <div className="w-11/12 h-fit xl:bottom-20 sm:bottom-14 absolute self-center">
-                    <Message type="CLIENT" content="Test content" />
-                    <Message type="CLIENT" content="Test content" />
-                    <Message type="CLIENT" content="Test content" />
-                    <Message type="CLIENT" content="Test content" />
+                <div className="flex flex-col overflow-y-auto xl:bottom-20 sm:bottom-14 absolute self-center" style={{height: '88%', width:'95%'}}>
+                    <div className="w-full flex-row flex justify-end"><Message type="CLIENT" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-start"><Message type="GPT-3" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-end"><Message type="CLIENT" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-start"><Message type="GPT-3" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-end"><Message type="CLIENT" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-start"><Message type="GPT-3" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-end"><Message type="CLIENT" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-start"><Message type="GPT-3" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-end"><Message type="CLIENT" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-start"><Message type="GPT-3" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-end"><Message type="CLIENT" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
+                    <div className="w-full flex-row flex justify-start"><Message type="GPT-3" content="Lorem ipsum dolor sit amet, consectetur adipiscing elit." /></div>
                 </div>
                 <div className="items-center justify-center flex flex-row w-11/12  xl:h-12 absolute  xl:bottom-2 sm:bottom-2">
                     <input type="text" className="flex flex-row bg-white border-white xl:rounded-xl xl:px-1 text-black xl:w-3/4 xl:h-2/3" />
