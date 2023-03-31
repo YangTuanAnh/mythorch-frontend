@@ -175,9 +175,9 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
         <HoveringContext.Provider value={{ hoverTitle: hTitle, setHoverTitle: setHTitle }}>
             <Layout>
                 <div className="flex flex-row w-full py-2 h-full justify-center relative overflow-y-hidden">
-                    {/* <ContentContext.Provider value={{content: content, setContent: useContent}}> */}
+                    <ContentContext.Provider value={{content: content, setContent: setContent}}>
                         <Documents files={JSON.parse(content.payload)} name={props.files.name} tags={JSON.parse(content.topics)} />
-                    {/* </ContentContext.Provider> */}
+                    </ContentContext.Provider>
                     
                     <div className='rounded-xl self-center items-end absolute top-2 right-1 sm:hidden md:flex' onClick={() => toggle(!isOpen)}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="grey" className={`w-10 h-10 hover:fill-s2condNOSTATUSBG ${isOpen && 'fill-s2condNOSTATUSBG'}`}>
