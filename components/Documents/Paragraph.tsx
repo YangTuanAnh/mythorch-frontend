@@ -3,14 +3,14 @@ import { useContext } from "react";
 import { HoveringContext } from "../context/HoveringContext";
 
 interface ParagraphProps {
-    index: number,
-    sentences: string[]
+    sentences: string[],
+    paragraphTags: string[]
 }
 
 
 const Paragraph: React.FC<ParagraphProps> = (props) => {
-    const { hoverIndex } = useContext(HoveringContext);
-    if(hoverIndex === props.index) return (
+    const { hoverTitle } = useContext(HoveringContext);
+    if (JSON.stringify(props.paragraphTags) === JSON.stringify(hoverTitle)) return (
         <Popover className="relative">
             <Popover.Button>
                 <p className="sm:mx-3 sm:my-2 sm:p-1 sm:rounded-xl sm:text-lg xl:mx-4 xl:rounded-2xl justify-center xl:my-4 text-justify xl:text-xl xl:p-2  bg-s2condINPROGRESS">

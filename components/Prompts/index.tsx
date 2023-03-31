@@ -15,7 +15,7 @@ const Prompts: React.FC<PromptProps> = (props) => {
             </div>
             <div className="flex flex-col xl:w-72 xl:h-1/4 sm:w-1/2 sm:h-1/5 self-center justify-center xl:mx-4">
                 <div className="flex flex-row xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md">
-                    <p className="xl:text-xl sm:text-lg font-bold text-black">Whar can we do for you?</p>
+                    <p className="xl:text-xl sm:text-lg font-bold text-black">What can we do for you?</p>
                 </div>
                 <div className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md hover:bg-white group">
                     <p className="font-bold text-white group-hover:text-fourthBLUEBUTTON sm:mx-1">Summarize this...</p>

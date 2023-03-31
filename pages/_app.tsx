@@ -9,6 +9,7 @@ import { OpenLookUpContext } from '@/components/context/OpenLookup'
 import { ChatBoxContext } from '@/components/context/ChatBoxContext'
 import { AuthProvider } from '@/components/context/AuthContext'
 import { useEffect } from 'react'
+import { WebAppScreenContext } from '@/components/context/WebAppScreenContext'
 
 const defaultMessagesData: { content: string, type: 'GPT-3' | 'CLIENT', sentTime?: Date }[] = [
   { content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.", type: 'GPT-3', sentTime: new Date() },
@@ -30,14 +31,14 @@ const defaultMessagesData: { content: string, type: 'GPT-3' | 'CLIENT', sentTime
 ]
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [login, setLogin] = useState(false);
   const [currentPage, setCurrentPage] = useState('webapp');
   const [lookupOpen, setLookUp] = useState(false);
   const [chatBox, setChatBox] = useState(false);
+  const [webAppScreen, setWebAppScreen] = useState<'resume-learning' | 'entrance' | 'upload-new-file' | 'interactivity' | 'processing'>('entrance');
   const messagesData = defaultMessagesData;
   useEffect(() => {
     // fetching messages from server
-    
+
   }, []);
 
   return <>
@@ -45,9 +46,11 @@ export default function App({ Component, pageProps }: AppProps) {
     <AuthProvider>
         <CurrentPageContext.Provider value={{ page: currentPage, setPage: setCurrentPage }}>
           <OpenLookUpContext.Provider value={{ isOpen: lookupOpen, toggle: setLookUp }}>
-            <ChatBoxContext.Provider value={{ isOpen: chatBox, toggle: setChatBox, messagesData: messagesData}}>
-              <Component {...pageProps} />
-            </ChatBoxContext.Provider>
+            <WebAppScreenContext.Provider value={{ screen: webAppScreen, changeScreen: setWebAppScreen }}>
+              <ChatBoxContext.Provider value={{ isOpen: chatBox, toggle: setChatBox, messagesData: messagesData }}>
+                <Component {...pageProps} />
+              </ChatBoxContext.Provider>
+            </WebAppScreenContext.Provider>
           </OpenLookUpContext.Provider>
         </CurrentPageContext.Provider>
     </AuthProvider>

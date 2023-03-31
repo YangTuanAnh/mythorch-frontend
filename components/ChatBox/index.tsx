@@ -17,6 +17,7 @@ const ChatBox: React.FC<ChatBoxProps> = (props) => {
     const handleUserClick = (event: React.MouseEvent<SVGSVGElement, MouseEvent>) => {
         setUserMessage({ ...userMessage, sentTime: new Date() });
         messagesData?.push(userMessage);
+        setUserMessage({ content: '', type: 'CLIENT' })
     }
     return (
         <Transition show={props.controlled} enter="transition ease-in-out duration-300 transform"
