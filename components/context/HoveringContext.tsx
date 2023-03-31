@@ -1,8 +1,8 @@
 import { createContext, Dispatch } from "react";
 
 interface HoveringContext {
-    hoverIndex: number,
-    setHoverIndex: Dispatch<number>
+    hoverTitle: string[],
+    setHoverTitle: Dispatch<string[]>
 }
 
-export const HoveringContext = createContext<HoveringContext>({ hoverIndex: -1, setHoverIndex: () => { } });
+export const HoveringContext = createContext<HoveringContext>({ hoverTitle: [], setHoverTitle: () => { } });
