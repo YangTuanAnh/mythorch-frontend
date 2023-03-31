@@ -9,6 +9,8 @@ import { HoveringContext } from "@/components/context/HoveringContext";
 import { useState } from "react";
 import { WebAppScreenContext } from "@/components/context/WebAppScreenContext";
 import Prompts from "@/components/Prompts";
+import axios from "axios";
+import { ContentContext } from "@/components/context/ContentContext";
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
     return {
@@ -45,11 +47,30 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
     const [link, setLink] = useState<string>('');
     const [apiKey, setApiKey] = useState<string>('');
     const [progressMessage, setProgressMessage] = useState<'Connecting to server...' | 'Validating GPT-3 API key...' | 'Inspecting input document...' | 'Generating content...' | 'Completed!'>('Connecting to server...');
+    const [content, setContent] = useState<any | null>(null);
 
     const handleProcessing = (link: string, apiKey: string) => {
         changeScreen('processing');
         // fetching data from server here
-
+        axios({
+          method: 'post',
+          url: "https://789a-115-73-214-48.ap.ngrok.io/api/test_wiki_retrieve/",
+          data:{
+            url: link,
+            apiKey: apiKey
+          }
+        })
+          .then(res => {
+            setContent(res.data)
+            changeScreen('interactivity')
+            //ContentStore.fetchData(JSON.parse(res.data.payload))
+            //setLoading(false)
+          })
+          .catch(err => {
+            console.log(err)
+            changeScreen('entrance')
+            //setLoading(false)
+          })
 
 
         // pass the data to the interactivity screen
@@ -58,7 +79,8 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
     }
 
     useEffect(() => {
-        setTimeout(() => {if(progressMessage === 'Completed!') changeScreen('interactivity')}, 2000);
+        //setTimeout(() => {if(progressMessage === 'Completed!') changeScreen('interactivity')}, 2000);
+        changeScreen("entrance")
     }, [progressMessage])
 
     if (screen === 'entrance') {
@@ -153,14 +175,17 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
         <HoveringContext.Provider value={{ hoverTitle: hTitle, setHoverTitle: setHTitle }}>
             <Layout>
                 <div className="flex flex-row w-full py-2 h-full justify-center relative overflow-y-hidden">
-                    <Documents files={props.files.payload} name={props.files.name} tags={props.files.tags} />
+                    {/* <ContentContext.Provider value={{content: content, setContent: useContent}}> */}
+                        <Documents files={JSON.parse(content.payload)} name={props.files.name} tags={JSON.parse(content.topics)} />
+                    {/* </ContentContext.Provider> */}
+                    
                     <div className='rounded-xl self-center items-end absolute top-2 right-1 sm:hidden md:flex' onClick={() => toggle(!isOpen)}>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1" stroke="grey" className={`w-10 h-10 hover:fill-s2condNOSTATUSBG ${isOpen && 'fill-s2condNOSTATUSBG'}`}>
                             <path stroke-linecap="round" stroke-linejoin="round" d="M20.25 8.511c.884.284 1.5 1.128 1.5 2.097v4.286c0 1.136-.847 2.1-1.98 2.193-.34.027-.68.052-1.02.072v3.091l-3-3c-1.354 0-2.694-.055-4.02-.163a2.115 2.115 0 01-.825-.242m9.345-8.334a2.126 2.126 0 00-.476-.095 48.64 48.64 0 00-8.048 0c-1.131.094-1.976 1.057-1.976 2.192v4.286c0 .837.46 1.58 1.155 1.951m9.345-8.334V6.637c0-1.621-1.152-3.026-2.76-3.235A48.455 48.455 0 0011.25 3c-2.115 0-4.198.137-6.24.402-1.608.209-2.76 1.614-2.76 3.235v6.226c0 1.621 1.152 3.026 2.76 3.235.577.075 1.157.14 1.74.194V21l4.155-4.155" />
                         </svg>
                     </div>
                     <ChatBox controlled={isOpen} />
-                    <HashTagsBar controlled={!isOpen} tags={props.files.tags} />
+                    <HashTagsBar controlled={!isOpen} tags={JSON.parse(content.topics)} />
                 </div>
             </Layout>
         </HoveringContext.Provider>
