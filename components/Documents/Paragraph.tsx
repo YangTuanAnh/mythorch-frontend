@@ -21,9 +21,11 @@ const Paragraph: React.FC<ParagraphProps> = (props) => {
     const { hoverTitle } = useContext(HoveringContext);
     const [ sentence, setSentence ] = useState<string | null>('')
     const { content, setContent } = useContext(ContentContext)
+    const [loading, setLoading] = useState<boolean>(true)
     console.log(sentence)
     const handleExplain = () =>
     {
+        setLoading(true)
         axios({
             method: 'post',
             url: "https://mythourchbackend-production.up.railway.app/api/user_interact/",
@@ -40,6 +42,7 @@ const Paragraph: React.FC<ParagraphProps> = (props) => {
                     newContent.payload[props.index] = res.data.payload
                     setContent(newContent);
                 }
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err)
@@ -83,12 +86,31 @@ const Paragraph: React.FC<ParagraphProps> = (props) => {
 
     return (
         <Popover className="relative">
-            <Popover.Button>
+            
+                {loading && <div className="w-full animate-pulse px-6 pt-4 flex flex-col gap-2">
+                    <div className="flex gap-2">
+                        <div className="h-4 bg-slate-200 rounded col-span-2 w-2/3"></div>
+                        <div className="h-4 bg-slate-200 rounded col-span-2 w-1/3"></div>
+                    </div>
+                    <div className="flex gap-2">
+                        <div className="h-4 bg-slate-200 rounded col-span-2 w-1/3"></div>
+                        <div className="h-4 bg-slate-200 rounded col-span-2 w-2/3"></div>
+                    </div>
+                    <div className="flex gap-2">
+                        <div className="h-4 bg-slate-200 rounded col-span-2 w-1/2"></div>
+                        <div className="h-4 bg-slate-200 rounded col-span-2 w-1/6"></div>
+                        <div className="h-4 bg-slate-200 rounded col-span-2 w-1/3"></div>
+                    </div>
+                </div>}
+                {!loading && 
+                <Popover.Button>
                 <p className="sm:mx-3 sm:my-2 sm:p-1 sm:rounded-xl sm:text-lg xl:mx-4 xl:rounded-2xl justify-center xl:my-4 text-justify xl:text-xl xl:p-2 ">
                     {props.sentences.map(sentence => <span className="text-black hover:bg-s2condINPROGRESS" onClick={() => console.log(sentence)}>{sentence}. </span>)}
                 </p>
+                </Popover.Button>}
+                
                 {/* <TextGenerationEffect paragraph={props.sentences}/> */}
-            </Popover.Button>
+            
             <Popover.Panel className="absolute left-10 top-0 z-10">
                 <div className="grid grid-cols-1 bg-black xl:w-96 xl:h-80 bg-thirdWELCOME xl:p-1 xl:rounded-2xl">
                     <div className='flex flex-col  xl-my-1 xl:h-12 xl:w-full bg-white sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0 sm:rounded-lg  text-black items-start font-bold hover:scale-y-110 xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center'>I don't understand this</div>
