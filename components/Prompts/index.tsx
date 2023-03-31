@@ -1,8 +1,12 @@
+import { useContext } from "react";
+import { WebAppScreenContext } from "../context/WebAppScreenContext";
+
 interface PromptProps {
     bookName: string,
 }
 
 const Prompts: React.FC<PromptProps> = (props) => {
+    const { changeScreen } = useContext(WebAppScreenContext);
     return (
         <div className="flex flex-row w-full py-2 h-full justify-center">
             <div className="flex flex-col xl:w-48 xl:h-1/4 sm:w-48 sm:h-1/5 self-center justify-center">
@@ -17,13 +21,13 @@ const Prompts: React.FC<PromptProps> = (props) => {
                 <div className="flex flex-row xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md">
                     <p className="xl:text-xl sm:text-lg font-bold text-black">What can we do for you?</p>
                 </div>
-                <div className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md hover:bg-white group">
+                <div onClick={() => changeScreen('interactivity') }className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md hover:bg-white group">
                     <p className="font-bold text-white group-hover:text-fourthBLUEBUTTON sm:mx-1">Summarize this...</p>
                 </div>
-                <div className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md hover:bg-white group">
+                <div onClick={() => changeScreen('interactivity') }className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md hover:bg-white group">
                     <p className="font-bold text-white group-hover:text-fourthBLUEBUTTON sm:mx-1">I find this hard to understand...</p>
                 </div>
-                <div className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md hover:bg-white group">
+                <div onClick={() => changeScreen('interactivity') }className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-1/6 sm:my-1 sm:w-5/6 sm:h-2/5 sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-md hover:bg-white group">
                     <p className="font-bold text-white group-hover:text-fourthBLUEBUTTON sm:mx-1">I want to extend the context of this...</p>
                 </div>
             </div>
