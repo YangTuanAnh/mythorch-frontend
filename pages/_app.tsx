@@ -4,7 +4,6 @@ import SEO from '../next-seo.config'
 import { DefaultSeo } from 'next-seo'
 
 import { useState } from 'react'
-import { LoginContext } from '@/components/context/LoginContext';
 import { CurrentPageContext } from '@/components/context/CurrentPageContext';
 import { OpenLookUpContext } from '@/components/context/OpenLookup'
 import { ChatBoxContext } from '@/components/context/ChatBoxContext'

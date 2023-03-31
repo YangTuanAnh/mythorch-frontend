@@ -59,6 +59,8 @@ interface WebAppsProps {
     }
 }
 
+
+
 const WebApps: React.FC<WebAppsProps> = (props) => {
     const { isOpen, toggle } = useContext(ChatBoxContext);
     const [hIndex, setHIndex] = useState(-1);

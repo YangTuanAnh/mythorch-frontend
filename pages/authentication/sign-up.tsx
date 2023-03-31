@@ -1,4 +1,3 @@
-import { LoginContext } from "@/components/context/LoginContext";
 import { useAuth } from "@/components/context/AuthContext";
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
