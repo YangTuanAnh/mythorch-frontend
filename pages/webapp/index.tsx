@@ -33,8 +33,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 interface WebAppsProps {
     files: {
         name: string,
-        payload: string[][],
-        tags: string[][]
     }
 }
 
@@ -176,7 +174,7 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
             <Layout>
                 <div className="flex flex-row w-full py-2 h-full justify-center relative overflow-y-hidden">
                     <ContentContext.Provider value={{content: content, setContent: setContent}}>
-                        <Documents files={JSON.parse(content.payload)} name={props.files.name} tags={JSON.parse(content.topics)} />
+                        <Documents name={props.files.name} />
                     </ContentContext.Provider>
                     
                     <div className='rounded-xl self-center items-end absolute top-2 right-1 sm:hidden md:flex' onClick={() => toggle(!isOpen)}>
