@@ -3,29 +3,30 @@ import Link from 'next/link';
 import './routes';
 import { routes } from "./routes";
 import { useContext } from "react";
-import { LoginContext } from "../context/LoginContext";
 import { CurrentPageContext } from "../context/CurrentPageContext";
 import { useRouter } from "next/router";
 import IconsBar from "./IconsBar";
 import { OpenLookUpContext } from "../context/OpenLookup";
 import WorkSection from "./WorkSection";
 import { Transition } from "@headlessui/react";
+import { useAuth } from "../context/AuthContext";
 
 
 interface SideNavProps {
 
 }
 const SideNav: React.FC<SideNavProps> = (props) => {
-    const { hasLogin, setLogin } = useContext(LoginContext);
+    const { currentUser, logout } = useAuth();
     const { setPage } = useContext(CurrentPageContext);
     const { isOpen, toggle } = useContext(OpenLookUpContext);
 
     const router = useRouter();
 
-    if (!hasLogin) return null;
+    if (!currentUser) return null;
     const handleSignOut = () => {
-        setLogin(false);
+        // setLogin(false);
         setPage('profile');
+        logout();
         router.push('/authentication/sign-in');
     }
 

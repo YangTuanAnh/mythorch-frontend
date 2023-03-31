@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { useContext } from 'react';
 import { CurrentPageContext } from '../context/CurrentPageContext';
-import { LoginContext } from '../context/LoginContext';
+import { useAuth } from '../context/AuthContext';
 interface SideNavButtonProps {
     name: string,
     route: string,
@@ -11,12 +11,12 @@ interface SideNavButtonProps {
 }
 
 const SideNavButton: React.FC<SideNavButtonProps> = (props) => {
-    const { hasLogin } = useContext(LoginContext);
+    const { currentUser } = useAuth();
     const { page, setPage } = useContext(CurrentPageContext);
     const router = useRouter();
     
     useEffect(() => {
-        if (!hasLogin) {
+        if (!currentUser) {
             router.push('/authentication/sign-in');
         }
     }, []);

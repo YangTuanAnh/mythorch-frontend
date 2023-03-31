@@ -1,4 +1,3 @@
-import { LoginContext } from "@/components/context/LoginContext";
 import { useAuth } from "@/components/context/AuthContext";
 import Logo from "@/components/Hero/Logo";
 import Link from "next/link";
@@ -11,8 +10,6 @@ const SignIn = () => {
     const [error, setError] = useState(String(null));
     const { login } = useAuth();
     const router = useRouter();
-    const { hasLogin, setLogin } = useContext(LoginContext);
-
     const submitHandler = async () => {
         if (email==="" || password==="") {
             setError("Please enter email and password");
@@ -22,7 +19,7 @@ const SignIn = () => {
         try {
             await login(email, password);
             //alert(user.currentUser.uid)
-            setLogin(true);
+            //setLogin(true);
             router.push("/webapp")
         } catch (err) {
             setError('Incorrect email or password')

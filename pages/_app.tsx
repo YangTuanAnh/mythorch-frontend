@@ -44,7 +44,6 @@ export default function App({ Component, pageProps }: AppProps) {
   return <>
     <DefaultSeo {...SEO} />
     <AuthProvider>
-      <LoginContext.Provider value={{ hasLogin: login, setLogin: setLogin }}>
         <CurrentPageContext.Provider value={{ page: currentPage, setPage: setCurrentPage }}>
           <OpenLookUpContext.Provider value={{ isOpen: lookupOpen, toggle: setLookUp }}>
             <ChatBoxContext.Provider value={{ isOpen: chatBox, toggle: setChatBox, messagesData: messagesData}}>
@@ -52,7 +51,6 @@ export default function App({ Component, pageProps }: AppProps) {
             </ChatBoxContext.Provider>
           </OpenLookUpContext.Provider>
         </CurrentPageContext.Provider>
-      </LoginContext.Provider>
     </AuthProvider>
 
   </>
