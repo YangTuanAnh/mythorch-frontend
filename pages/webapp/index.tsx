@@ -24,7 +24,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
                     `In addition to being a library, MobX also introduces a few concepts: state, actions, and derivations (including reactions and computed values)`,
                     `Application state refers to the entire model of an application, and can contain different data types including array, numbers, and objects. In MobX, actions are methods that manipulate and update the state. These methods can be bound to a JavaScript event handler to ensure a UI event triggers them`,
                     `Anything (not just a value) that is derived from the application state without further interaction is referred to as a derivation. Derivations will listen to any particular state and then perform some computation to produce a distinct value from that state. A derivation can return any data type, including objects. In MobX, the two types of derivations are reactions and computed values`]],
-                tags: [['MobX', 'State Management', 'React', 'JavaScript', 'Frontend', 'Tutorial', 'Introduction'], ['MobX', 'State Management', 'React', 'Tutorial', 'Introduction']]
+                topics: [['MobX', 'State Management', 'React', 'JavaScript', 'Frontend', 'Tutorial', 'Introduction'], ['MobX', 'State Management', 'React', 'Tutorial', 'Introduction']]
             }
         }
     }
@@ -33,6 +33,8 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
 interface WebAppsProps {
     files: {
         name: string,
+        payload: string[][],
+        topics: string[][]
     }
 }
 
@@ -46,32 +48,34 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
     const [apiKey, setApiKey] = useState<string>('');
     const [progressMessage, setProgressMessage] = useState<'Connecting to server...' | 'Validating GPT-3 API key...' | 'Inspecting input document...' | 'Generating content...' | 'Completed!'>('Connecting to server...');
     const [content, setContent] = useState<any | null>(null);
-
+    //console.log(props.files)
     const handleProcessing = (link: string, apiKey: string) => {
         changeScreen('processing');
+        setContent(props.files)
+        changeScreen('interactivity')
         // fetching data from server here
-        axios({
-          method: 'post',
-          url: "https://789a-115-73-214-48.ap.ngrok.io/api/test_wiki_retrieve/",
-          data:{
-            url: link,
-            apiKey: apiKey
-          }
-        })
-          .then(res => {
-            setContent(res.data)
-            changeScreen('interactivity')
-            //ContentStore.fetchData(JSON.parse(res.data.payload))
-            //setLoading(false)
-          })
-          .catch(err => {
-            console.log(err)
-            changeScreen('entrance')
-            //setLoading(false)
-          })
+        // axios({
+        //   method: 'post',
+        //   url: "https://789a-115-73-214-48.ap.ngrok.io/api/test_wiki_retrieve/",
+        //   data:{
+        //     url: link,
+        //     apiKey: apiKey
+        //   }
+        // })
+        //   .then(res => {
+        //     setContent(res.data)
+        //     changeScreen('interactivity')
+        //     //ContentStore.fetchData(JSON.parse(res.data.payload))
+        //     //setLoading(false)
+        //   })
+        //   .catch(err => {
+        //     console.log(err)
+        //     changeScreen('entrance')
+        //     //setLoading(false)
+        //   })
 
 
-        // pass the data to the interactivity screen
+        // // pass the data to the interactivity screen
         
 
     }
@@ -183,7 +187,7 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
                         </svg>
                     </div>
                     <ChatBox controlled={isOpen} />
-                    <HashTagsBar controlled={!isOpen} tags={JSON.parse(content.topics)} />
+                    <HashTagsBar controlled={!isOpen} tags={content.topics} />
                 </div>
             </Layout>
         </HoveringContext.Provider>

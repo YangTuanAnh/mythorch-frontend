@@ -1,16 +1,51 @@
 import { Popover } from "@headlessui/react";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { HoveringContext } from "../context/HoveringContext";
 import TextGenerationEffect from "./TextGenerationEffect";
+import { ContentContext } from "../context/ContentContext";
+import axios from "axios";
+
 
 interface ParagraphProps {
     sentences: string[],
+    index: number,
     paragraphTags?: string[]
 }
 
+interface ContentProps {
+    payload: string[][],
+    topics: string[][]
+}
 
 const Paragraph: React.FC<ParagraphProps> = (props) => {
     const { hoverTitle } = useContext(HoveringContext);
+    const [ sentence, setSentence ] = useState<string | null>('')
+    const { content, setContent } = useContext(ContentContext)
+    console.log(sentence)
+    const handleExplain = () =>
+    {
+        axios({
+            method: 'post',
+            url: "https://mythourchbackend-production.up.railway.app/api/user_interact/",
+            data: {
+                sentence: sentence,
+                prompt: "Explain more about this"
+            }
+        })
+            .then(res => {
+                // ContentStore.updateContent(JSON.parse(res.data.payload), props.index)
+                // setExplain(false)
+                let newContent = content
+                if (newContent) {
+                    newContent.payload[props.index] = res.data.payload
+                    setContent(newContent);
+                }
+            })
+            .catch(err => {
+                console.log(err)
+            })
+        //console.log(props.index)
+    }
 
     const compare: (a: string[], b: string[]) => boolean = (a: string[], b: string[]) => {
         if (a.length !== b.length) return false;
@@ -25,7 +60,7 @@ const Paragraph: React.FC<ParagraphProps> = (props) => {
             <Popover className="relative">
                 <Popover.Button>
                     <p className="sm:mx-3 sm:my-2 sm:p-1 sm:rounded-xl sm:text-lg xl:mx-4 xl:rounded-2xl justify-center xl:my-4 text-justify xl:text-xl xl:p-2  bg-s2condINPROGRESS">
-                        {props.sentences.map(sentence => <span className="text-black">{sentence}. </span>)}
+                        {props.sentences.map((sentence, id) => <span className="text-black hover:bg-s2condINPROGRESS" onClick={() => console.log(sentence)}>{sentence}. </span>)}
                     </p>
                 </Popover.Button>
                 <Popover.Panel className="absolute left-10 top-0 z-10">
@@ -49,8 +84,8 @@ const Paragraph: React.FC<ParagraphProps> = (props) => {
     return (
         <Popover className="relative">
             <Popover.Button>
-                <p className="sm:mx-3 sm:my-2 sm:p-1 sm:rounded-xl sm:text-lg xl:mx-4 xl:rounded-2xl justify-center xl:my-4 text-justify xl:text-xl xl:p-2  hover:bg-s2condINPROGRESS">
-                    {props.sentences.map(sentence => <span className="text-black">{sentence}. </span>)}
+                <p className="sm:mx-3 sm:my-2 sm:p-1 sm:rounded-xl sm:text-lg xl:mx-4 xl:rounded-2xl justify-center xl:my-4 text-justify xl:text-xl xl:p-2 ">
+                    {props.sentences.map(sentence => <span className="text-black hover:bg-s2condINPROGRESS" onClick={() => console.log(sentence)}>{sentence}. </span>)}
                 </p>
                 {/* <TextGenerationEffect paragraph={props.sentences}/> */}
             </Popover.Button>
