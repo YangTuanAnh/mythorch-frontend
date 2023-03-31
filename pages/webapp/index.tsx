@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 import { ChatBoxContext } from "@/components/context/ChatBoxContext";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { GetServerSideProps } from "next";
 import Documents from "@/components/Documents";
 import ChatBox from "@/components/ChatBox";
@@ -40,8 +40,24 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
     const { isOpen, toggle } = useContext(ChatBoxContext);
     const [hTitle, setHTitle] = useState<string[]>([]);
     const { screen, changeScreen } = useContext(WebAppScreenContext);
+    const [link, setLink] = useState<string>('');
+    const [apiKey, setApiKey] = useState<string>('');
+    const [progressMessage, setProgressMessage] = useState<'Connecting to server...' | 'Validating GPT-3 API key...' | 'Inspecting input document...' | 'Generating content...' | 'Completed!'>('Connecting to server...');
+
+    const handleProcessing = (link: string, apiKey: string) => {
+        changeScreen('processing');
+        // fetching data from server here
 
 
+
+        // pass the data to the interactivity screen
+        
+
+    }
+
+    useEffect(() => {
+        setTimeout(() => {if(progressMessage === 'Completed!') changeScreen('interactivity')}, 2000);
+    }, [progressMessage])
 
     if (screen === 'entrance') {
         return (
@@ -70,20 +86,20 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
         return (
             <Layout>
                 <div className="flex flex-row w-full py-2 h-full justify-center">
-                    <div className="flex flex-col xl:w-72 xl:h-24 sm:w-48 sm:h-16 self-center justify-center">
+                    <div className="flex flex-col xl:w-1/3 xl:h-1/5 sm:w-2/3 sm:h-1/6 self-center justify-center">
                         <div className="flex flex-row xl:my-1 xl:w-full xl:h-3/5 sm:my-1 sm:w-full sm:h-4/5  self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-2 sm:text-sm xl:text-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" className="w-6 h-6 stroke-fourthBLUEBUTTON">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M13.19 8.688a4.5 4.5 0 011.242 7.244l-4.5 4.5a4.5 4.5 0 01-6.364-6.364l1.757-1.757m13.35-.622l1.757-1.757a4.5 4.5 0 00-6.364-6.364l-4.5 4.5a4.5 4.5 0 001.242 7.244" />
                             </svg>
-                            <input className="text-black sm:w-full sm:h-full sm:rounded-xl sm:px-1 sm:text-md xl:w-full xl:h-4/5 xl:rounded-2xl xl:px-2 overflow-x-auto xl:my-1 bg-white" placeholder="Type your link here" />
+                            <input onChange={(event) => setLink(event.target.value)} className="text-black sm:w-full sm:h-full sm:rounded-xl sm:px-1 sm:text-md xl:w-full xl:h-4/5 xl:rounded-2xl xl:px-2 overflow-x-auto xl:my-1 bg-white" placeholder="Type your link here" />
                         </div>
                         <div className="flex flex-row xl:my-1 xl:w-full xl:h-3/5 sm:my-1 sm:w-full sm:h-4/5  self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-2 sm:text-sm xl:text-lg">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" className="w-6 h-6 stroke-fourthBLUEBUTTON">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 006 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0118 16.5h-2.25m-7.5 0h7.5m-7.5 0l-1 3m8.5-3l1 3m0 0l.5 1.5m-.5-1.5h-9.5m0 0l-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6" />
                             </svg>
-                            <input className="text-black sm:w-full sm:h-full sm:rounded-xl sm:px-1 sm:text-md xl:w-full xl:h-4/5 xl:rounded-2xl xl:px-2 overflow-x-auto xl:my-1 bg-white" placeholder="Type your GPT-3 API key here" />
+                            <input onChange={(event) => setApiKey(event.target.value)} className="text-black sm:w-full sm:h-full sm:rounded-xl sm:px-1 sm:text-md xl:w-full xl:h-4/5 xl:rounded-2xl xl:px-2 overflow-x-auto xl:my-1 bg-white" placeholder="Type your GPT-3 API key here" />
                         </div>
-                        <div onClick={() => changeScreen('interactivity')} className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-2/5 sm:my-1 sm:w-full sm:h-full sm:rounded-lg   self-center xl:rounded-3xl justify-center items-center xl:gap-2 sm:gap-1 sm:text-sm xl:text-lg  hover:bg-white group">
+                        <div onClick={() => handleProcessing(link, apiKey)} className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-2/5 sm:my-1 sm:w-full sm:h-full rounded-3xl   self-center  justify-center items-center xl:gap-2 sm:gap-1 sm:text-md xl:text-lg  hover:bg-white group">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" className="w-6 h-6 stroke-white group-hover:stroke-fourthBLUEBUTTON">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
                             </svg>
@@ -99,6 +115,34 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
         return (
             <Layout>
                 <Prompts bookName="Computer Hardware" />
+            </Layout>
+        )
+    }
+
+    if (screen === 'processing') {
+        return (
+            <Layout>
+                <div className="flex flex-row w-full py-2 h-full justify-center">
+                    <div className="flex flex-col xl:w-1/3 xl:h-1/5 sm:w-2/3 sm:h-1/6 self-center justify-center">
+                        <button onClick={() => setProgressMessage('Completed!')} type="button" className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-2/5 sm:my-1 sm:w-full sm:h-full rounded-3xl   self-center  justify-center items-center xl:gap-2 sm:gap-1 sm:text-md xl:text-lg">
+                            {progressMessage === 'Connecting to server...' && (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" className="xl:w-10 xl:h-10 animate-spin">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
+                            </svg>)}
+                            {progressMessage === 'Completed!' && (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" className="xl:w-10 xl:h-10 animate-bounce">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>)}
+                            {(progressMessage === 'Inspecting input document...' || progressMessage === 'Validating GPT-3 API key...') && (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" className="xl:w-10 xl:h-10 animate-bounce">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                            </svg>
+                            )}
+                            {progressMessage === 'Generating content...' && (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" className="xl:w-10 xl:h-10 animate-bounce">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9.75 3.104v5.714a2.25 2.25 0 01-.659 1.591L5 14.5M9.75 3.104c-.251.023-.501.05-.75.082m.75-.082a24.301 24.301 0 014.5 0m0 0v5.714c0 .597.237 1.17.659 1.591L19.8 15.3M14.25 3.104c.251.023.501.05.75.082M19.8 15.3l-1.57.393A9.065 9.065 0 0112 15a9.065 9.065 0 00-6.23-.693L5 14.5m14.8.8l1.402 1.402c1.232 1.232.65 3.318-1.067 3.611A48.309 48.309 0 0112 21c-2.773 0-5.491-.235-8.135-.687-1.718-.293-2.3-2.379-1.067-3.61L5 14.5" />
+                            </svg>
+                            )}
+                            <p className="font-bold text-white group-hover:text-fourthBLUEBUTTON justify-center sefl-center">{progressMessage}</p>
+                        </button>
+                    </div>
+                </div>
             </Layout>
         )
     }

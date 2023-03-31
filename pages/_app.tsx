@@ -4,7 +4,6 @@ import SEO from '../next-seo.config'
 import { DefaultSeo } from 'next-seo'
 
 import { useState } from 'react'
-import { LoginContext } from '@/components/context/LoginContext';
 import { CurrentPageContext } from '@/components/context/CurrentPageContext';
 import { OpenLookUpContext } from '@/components/context/OpenLookup'
 import { ChatBoxContext } from '@/components/context/ChatBoxContext'
@@ -32,11 +31,10 @@ const defaultMessagesData: { content: string, type: 'GPT-3' | 'CLIENT', sentTime
 ]
 
 export default function App({ Component, pageProps }: AppProps) {
-  const [login, setLogin] = useState(false);
   const [currentPage, setCurrentPage] = useState('webapp');
   const [lookupOpen, setLookUp] = useState(false);
   const [chatBox, setChatBox] = useState(false);
-  const [webAppScreen, setWebAppScreen] = useState<'resume-learning' | 'entrance' | 'upload-new-file' | 'interactivity'>('entrance');
+  const [webAppScreen, setWebAppScreen] = useState<'resume-learning' | 'entrance' | 'upload-new-file' | 'interactivity' | 'processing'>('entrance');
   const messagesData = defaultMessagesData;
   useEffect(() => {
     // fetching messages from server
