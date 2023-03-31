@@ -36,6 +36,8 @@ interface WebAppsProps {
     }
 }
 
+
+
 const WebApps: React.FC<WebAppsProps> = (props) => {
     const { isOpen, toggle } = useContext(ChatBoxContext);
     const [hTitle, setHTitle] = useState<string[]>([]);
