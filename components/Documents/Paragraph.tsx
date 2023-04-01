@@ -68,12 +68,12 @@ const Paragraph: React.FC<ParagraphProps> = (props) => {
             <Popover className="relative">
                 <Popover.Button>
                     <p className="sm:mx-3 sm:my-2 sm:p-1 sm:rounded-xl sm:text-lg xl:mx-4 xl:rounded-2xl justify-center xl:my-4 text-justify xl:text-xl xl:p-2  bg-s2condINPROGRESS">
-                        {props.sentences.map((sentence, id) => <span className="text-black hover:bg-s2condINPROGRESS" onClick={() => console.log(sentence)}>{sentence}. </span>)}
+                        {props.sentences.map((sentence, id) => <span key={sentence }className="text-black hover:bg-s2condINPROGRESS" onClick={() => console.log(sentence)}>{sentence}. </span>)}
                     </p>
                 </Popover.Button>
                 <Popover.Panel className="absolute left-10 top-0 z-10">
                     <div className="grid grid-cols-1 bg-black xl:w-96 xl:h-80 bg-thirdWELCOME xl:p-1 xl:rounded-2xl">
-                        <div className='flex flex-col  xl-my-1 xl:h-12 xl:w-full bg-white sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0 sm:rounded-lg  text-black items-start font-bold hover:scale-y-110 xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center'>I don't understand this</div>
+                        <div className='flex flex-col  xl-my-1 xl:h-12 xl:w-full bg-white sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0 sm:rounded-lg  text-black items-start font-bold hover:scale-y-110 xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center'>I don&apos;t understand this</div>
                         <div className='flex flex-col  xl-my-1 xl:h-12 xl:w-full bg-fourthBLUE sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0 sm:rounded-lg  text-white items-start font-bold hover:scale-y-110 xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center'>Give me more information about this</div>
                         <div className='flex flex-col  xl-my-1 xl:h-12 xl:w-full bg-white sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0 sm:rounded-lg  text-black items-start font-bold hover:scale-y-110 xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center'>Summarize this</div>
                         <div className='flex flex-col  xl-my-1 xl:h-12 xl:w-full bg-fourthBLUE sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0 sm:rounded-lg  text-white items-start font-bold hover:scale-y-110 xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center'>Explain this</div>
