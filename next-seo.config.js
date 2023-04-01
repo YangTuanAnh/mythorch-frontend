@@ -14,7 +14,7 @@ const SEO = {
     description,
     images: [
       {
-        url: "https://lablab.ai/_next/image?url=https%3A%2F%2Fstorage.googleapis.com%2Flablab-static-eu%2Fimages%252Fsubmissions%252Fclet41ml700c63j6w3xw9rguc%252Fcleif25vd009i356pxt9cjwvc_o303wc3_imageLink.jpg&w=750&q=75",
+        url: "thumbnail.png",
         alt: title,
       },
     ],
