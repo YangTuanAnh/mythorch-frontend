@@ -11,7 +11,7 @@ const CompletionProgress: React.FC<CompletionProgressProps> = (props) => {
             <div className="text-black font-bold text-xl self-center">Completion Progress</div>
             <span className="h-1 w-5/6 bg-fourthBLUEBG xl:w-full sm:w-full rounded-lg"></span>
             <ul className='grid grid-rows-max w-full h-full overflow-y-auto overflow-x-hidden'>
-                {props.books.map(book => <Item title={book.title} chapter={book.chapter} progress={book.progress} />)}
+                {props.books.map(book => <Item key={book.title} title={book.title} chapter={book.chapter} progress={book.progress} />)}
             </ul>
         </div>
     )
