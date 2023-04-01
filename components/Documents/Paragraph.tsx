@@ -13,6 +13,7 @@ interface ParagraphProps {
 }
 
 interface ContentProps {
+    title: string,
     payload: string[][],
     topics: string[][]
 }
