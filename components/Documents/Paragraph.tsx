@@ -135,7 +135,7 @@ const Paragraph: React.FC<ParagraphProps> = (props) => {
                         onClick={() => handleReference()}>Show me the references</button>
                     <button className='flex flex-col  xl-my-1 xl:h-12 xl:w-full bg-fourthBLUE sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0 sm:rounded-lg  text-white items-start font-bold hover:scale-y-110 xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center'
                         onClick={() => handleExplain()}>Explain more about this</button>
-                    <div className="flex flex-col  xl-my-1 xl:h-12 xl:w-full sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0  text-black items-start font-bold xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center text-justify">
+                    <div className="flex flex-col  xl-my-1 xl:h-20 xl:w-full sm:w-72 sm:h-10 sm:my-1 sm:px-1 sm:mx-1 xl:mx-0  text-black items-start font-bold xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center text-justify overflow-y-auto">
                         {reference}
                     </div>
                     <div className='flex flex-row items-center bg-thirdWELCOME xl-my-1 xl:h-12 xl:w-full sm:w-72 sm:h-10 sm:my-1 sm:px-1 xl:px-0 mx-0 sm:rounded-lg  text-black items-start xl:text-md sm:text-sm xl:px-2 xl:rounded-2xl justify-center'>
