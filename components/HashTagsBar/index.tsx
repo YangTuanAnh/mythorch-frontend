@@ -12,7 +12,7 @@ const HashTagsBar: React.FC<HashTagsBarProps> = (props) => {
             <div className="xl:text-lg text-black xl:m-1 text-center">
                 <span className="font-bold self-center">Relevant Topics From This Document</span>
             </div>
-            {props.tags.filter(tag => tag.length !== 0).map((tag) => <HashTag titles={tag} />)}
+            {props.tags.filter(tag => tag.length !== 0).map((tag) => <HashTag key={tag} titles={tag} />)}
         </div>
     )
     return null;

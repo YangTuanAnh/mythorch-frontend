@@ -83,7 +83,7 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
     useEffect(() => {
         //setTimeout(() => {if(progressMessage === 'Completed!') changeScreen('interactivity')}, 2000);
         changeScreen("entrance")
-    }, [progressMessage])
+    }, [])
 
     if (screen === 'entrance') {
         return (
