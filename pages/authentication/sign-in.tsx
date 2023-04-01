@@ -44,7 +44,7 @@ const SignIn = () => {
                     <button
                         onClick={submitHandler}
                         className="bg-secondary rounded-full w-full my-4 p-2 text-neutral-200 font-bold hover:scale-x-105 transition">Login</button>
-                    <p className="text-secondary mt-5">Don't have an account?&nbsp;
+                    <p className="text-secondary mt-5">Don&apos;t have an account?&nbsp;
                         <Link href="/authentication/sign-up" className="hover:underline">Register</Link>.
                     </p>
                 </div>
