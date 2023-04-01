@@ -3,9 +3,9 @@ import Bar from "./Bar";
 const ProgressChart: React.FC<BarChartConfiguration> = (props) => {
 
     return (
-        <div className="flex flex-col items-center w-full h-full hover:drop-shadow-xl bg-green-700 rounded-3xl xl:p-2 xl:ml-0 xl:mb-0 sm:mb-0 sm:p-2">
-            <h2 className="xl:text-xl sm:text-lg sm:pl-1 sm:my-1 font-bold text-white self-start">Efficiency Chart</h2>
-            <div className="flex items-end flex-grow w-full h-full mt-2 space-x-2 sm:space-x-3 border border-solid border-2 border-primary bg-white rounded-3xl xl:p-2 sm:p-1 ">
+        <div className="flex flex-col items-center w-full h-full hover:drop-shadow-xl bg-white rounded-3xl xl:p-2 xl:ml-0 xl:mb-0 sm:mb-0 sm:p-2">
+            <h2 className="xl:text-xl sm:text-lg sm:pl-1 sm:my-1 font-bold text-black self-start">Efficiency Chart</h2>
+            <div className="flex items-end flex-grow w-full h-full mt-2 space-x-2 sm:space-x-3 border-solid border-2 border-primary bg-white rounded-3xl xl:p-2 sm:p-1 ">
                 <Bar studyHours={12} dayOfWeek="Mon"/>
                 <Bar studyHours={11} dayOfWeek="Tue"/>
                 <Bar studyHours={13} dayOfWeek="Wed"/>
