@@ -46,7 +46,7 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
     const { screen, changeScreen } = useContext(WebAppScreenContext);
     const [link, setLink] = useState<string>('');
     const [apiKey, setApiKey] = useState<string>('');
-    const [progressMessage, setProgressMessage] = useState<'Connecting to server...' | 'Validating GPT-3 API key...' | 'Inspecting input document...' | 'Generating content...' | 'Completed!'>('Connecting to server...');
+    const [progressMessage, setProgressMessage] = useState<'Connecting to server...' | 'Validating GPT-3 API key...' | 'Inspecting input document...' | 'Generating content...' | 'Completed!' | undefined>('Connecting to server...');
     const [content, setContent] = useState<any | null>(null);
     //console.log(props.files)
     const handleProcessing = (link: string, apiKey: string) => {
@@ -64,7 +64,7 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
         })
           .then(res => {
             setContent(res.data)
-            changeScreen('interactivity')
+            setTimeout(() => {setProgressMessage('Completed!'); changeScreen('interactivity')}, 2000);
             //ContentStore.fetchData(JSON.parse(res.data.payload))
             //setLoading(false)
           })
@@ -146,11 +146,16 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
     }
 
     if (screen === 'processing') {
+        // let queue: ('Connecting to server...' | 'Validating GPT-3 API key...' | 'Inspecting input document...' | 'Generating content...' | 'Completed!' | undefined)[] = ['Connecting to server...', 'Validating GPT-3 API key...', 'Inspecting input document...', 'Generating content...']
+        // while (progressMessage !== 'Completed!') {
+        //     let curr = queue.shift()
+        //     setTimeout(() => setProgressMessage(curr), 2000)
+        // }
         return (
             <Layout>
                 <div className="flex flex-row w-full py-2 h-full justify-center">
                     <div className="flex flex-col xl:w-1/3 xl:h-1/5 sm:w-2/3 sm:h-1/6 self-center justify-center">
-                        <button onClick={() => setProgressMessage('Completed!')} type="button" className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-2/5 sm:my-1 sm:w-full sm:h-full rounded-3xl   self-center  justify-center items-center xl:gap-2 sm:gap-1 sm:text-md xl:text-lg">
+                        <button onClick={() => {}} type="button" className="flex flex-row bg-fourthBLUEBUTTON xl:my-1 xl:w-full xl:h-2/5 sm:my-1 sm:w-full sm:h-full rounded-3xl   self-center  justify-center items-center xl:gap-2 sm:gap-1 sm:text-md xl:text-lg">
                             {progressMessage === 'Connecting to server...' && (<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="white" className="xl:w-10 xl:h-10 animate-spin">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0l3.181 3.183a8.25 8.25 0 0013.803-3.7M4.031 9.865a8.25 8.25 0 0113.803-3.7l3.181 3.182m0-4.991v4.99" />
                             </svg>)}

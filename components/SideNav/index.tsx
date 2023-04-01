@@ -40,7 +40,7 @@ const SideNav: React.FC<SideNavProps> = (props) => {
                         <path fill-rule="evenodd" clip-rule="evenodd" d="M14.2335 20.6511C14.6959 20.6511 15.0708 20.2762 15.0708 19.8138L15.0708 15.0692L19.8152 15.0692C20.2776 15.0692 20.6525 14.6943 20.6525 14.2319C20.6525 13.7695 20.2776 13.3946 19.8152 13.3946L14.3451 13.3946C13.8211 13.3946 13.3962 13.8195 13.3962 14.3436L13.3962 19.8138C13.3962 20.2762 13.7711 20.6511 14.2335 20.6511Z" fill="#8A8A8A" />
                     </svg>
                 </div>
-                {routes.map(route => <PageButton route={route[0]} icon={route[1]} name={route[2]} />)}
+                {routes.map(route => <PageButton key={route[2]} route={route[0]} icon={route[1]} name={route[2]} />)}
                 <div className="absolute bottom-0 flex flex-row pt-1.5 mx-auto hover:bg-[#99D8F0] w-full h-10 justify-center" onClick={handleSignOut}>
                     <Link href='/authentication/sign-in'>
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="red" className="w-6 h-6">

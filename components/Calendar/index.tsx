@@ -36,7 +36,7 @@ const Calendar: React.FC<CalendarProps> = (props) => {
                     </div>
                 </div>
                 <div className="grid grid-cols-7 mx-1 h-1/5 w-full bg-black">
-                    {weekDays.map(day => <span className="flex flex-col text-black font-bold text-sm">{day}</span>)}
+                    {weekDays.map(day => <span className="flex flex-col text-black font-bold text-sm" key={day}>{day}</span>)}
                 </div>
             </div>
         </div>
