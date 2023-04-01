@@ -5,11 +5,11 @@ const description =
 const SEO = {
   title,
   description,
-  canonical: "",
+  canonical: "https://mythorch-frontend.vercel.app/",
   openGraph: {
     type: "website",
     locale: "en_IE",
-    url: "",
+    url: "https://mythorch-frontend.vercel.app/",
     title,
     description,
     images: [
