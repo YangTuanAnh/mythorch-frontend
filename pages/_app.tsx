@@ -36,11 +36,6 @@ export default function App({ Component, pageProps }: AppProps) {
   const [chatBox, setChatBox] = useState(false);
   const [webAppScreen, setWebAppScreen] = useState<'resume-learning' | 'entrance' | 'upload-new-file' | 'interactivity' | 'processing'>('entrance');
   const messagesData = defaultMessagesData;
-  useEffect(() => {
-    // fetching messages from server
-
-  }, []);
-
   return <>
     <DefaultSeo {...SEO} />
     <AuthProvider>

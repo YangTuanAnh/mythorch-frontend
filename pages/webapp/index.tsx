@@ -51,31 +51,31 @@ const WebApps: React.FC<WebAppsProps> = (props) => {
     //console.log(props.files)
     const handleProcessing = (link: string, apiKey: string) => {
         changeScreen('processing');
-        setContent(props.files)
-        changeScreen('interactivity')
+        // setContent(props.files)
+        // changeScreen('interactivity')
         // fetching data from server here
-        // axios({
-        //   method: 'post',
-        //   url: "https://789a-115-73-214-48.ap.ngrok.io/api/test_wiki_retrieve/",
-        //   data:{
-        //     url: link,
-        //     apiKey: apiKey
-        //   }
-        // })
-        //   .then(res => {
-        //     setContent(res.data)
-        //     changeScreen('interactivity')
-        //     //ContentStore.fetchData(JSON.parse(res.data.payload))
-        //     //setLoading(false)
-        //   })
-        //   .catch(err => {
-        //     console.log(err)
-        //     changeScreen('entrance')
-        //     //setLoading(false)
-        //   })
+        axios({
+          method: 'post',
+          url: "https://789a-115-73-214-48.ap.ngrok.io/api/wiki_retrieve/",
+          data:{
+            url: link,
+            apiKey: apiKey
+          }
+        })
+          .then(res => {
+            setContent(res.data)
+            changeScreen('interactivity')
+            //ContentStore.fetchData(JSON.parse(res.data.payload))
+            //setLoading(false)
+          })
+          .catch(err => {
+            console.log(err)
+            changeScreen('entrance')
+            //setLoading(false)
+          })
 
 
-        // // pass the data to the interactivity screen
+        // pass the data to the interactivity screen
         
 
     }
