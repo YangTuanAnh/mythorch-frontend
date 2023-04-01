@@ -19,7 +19,7 @@ const SideNavButton: React.FC<SideNavButtonProps> = (props) => {
         if (!currentUser) {
             router.push('/authentication/sign-in');
         }
-    }, []);
+    });
 
     if (page === props.name)
         return (
