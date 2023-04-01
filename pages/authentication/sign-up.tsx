@@ -23,7 +23,7 @@ const SignUp = () =>
         <div className="h-screen bg-primary p-8 text-black">
             <Logo />
             <div className="h-full w-full flex items-center justify-center">
-                <div className="flex flex-col p-3 sm:rounded-3xl shrink md:w-1/2 md:h-3/5 justify-center bg-thirdLOGIN shadow-md">
+                <div className="flex flex-col p-3 sm:p-2 sm:rounded-3xl shrink md:w-1/2 md:h-3/5 justify-center bg-thirdLOGIN shadow-md">
                     <h2 className="text-4xl font-bold text-neutral-600 text-center mb-4">Get started for free</h2>
                     {error!==String(null) && <p className='text-red-600'>{error}</p>}
                     <label className="font-semibold md:text-md">Email Address</label>
